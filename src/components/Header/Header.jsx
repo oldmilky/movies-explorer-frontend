@@ -1,7 +1,7 @@
 import React from 'react';
 import './Header.css'
 import {Link, useLocation} from "react-router-dom";
-import logo from '../../images/header__logo.png'
+import logo from '../../images/header__logo.svg'
 import Navigation from "../Navigation/Navigation";
 
 function Header() {
@@ -18,13 +18,19 @@ function Header() {
     <header className='header'>
       <div className="header__container">
         <div className="header__wrapper">
-          <Link to="/"><img className="header__logo" src={logo} alt="Логотип"/></Link>
-          {pathname === "/" ? ("") : <Navigation/>}
+          <Link to="/">
+            <img className="header__logo" src={logo} alt="Логотип"/>
+          </Link>
         </div>
+        {pathname === "/" ? ("") : <Navigation/>}
         <div className={`header__wrapper ${pathname === "/" ? "" : "header__wrapper_burger"}`}>
-          <Link className='header__sign-text' to={`${pathname === "/" ? "/signup" : "/profile"}`}>{text}</Link>
+          <Link className='header__sign-text' to={`${pathname === "/" ? "/signup" : "/profile"}`}>
+            {text}
+          </Link>
           {pathname === "/" ? (
-            <Link to="/signin" className="header__btn-signin" type="button">Войти</Link>
+            <Link to="/signin" className="header__btn-signin" type="button">
+              Войти
+            </Link>
           ) : (
             <button className="header__btn-account" type="button"/>
           )}

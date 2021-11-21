@@ -1,7 +1,7 @@
 import React from 'react';
 import './SearchForm.css'
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox"
-import findIcon from '../../images/search-icon.png'
+import findIcon from '../../images/search-icon.svg'
 
 function SearchForm() {
   return (

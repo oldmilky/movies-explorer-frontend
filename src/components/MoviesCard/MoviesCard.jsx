@@ -20,7 +20,8 @@ function MoviesCard(props) {
       <div className="card__description">
         <p className="card__name">33 слова о дизайне</p>
         <p className="card__duration">1ч 42м</p>
-        <img className="card__icon" src={cardIcon} alt="Тестовая иконка"/>
+        {/* <img className="card__icon" src={cardIcon} alt="Тестовая иконка"/> */}
+        <button className="card__icon" type="button" />
       </div>
     </li>
   );
