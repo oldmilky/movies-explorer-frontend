@@ -9,54 +9,54 @@ import Profile from "../Profile/Profile";
 import Login from "../Login/Login";
 import MainApi from "../../utils/MainApi";
 import Register from "../Register/Register";
-import CurrentUserContext from '../../context/CurrentUserContext';
+import CurrentUserContext from "../../context/CurrentUserContext";
 import NotFound from "../NotFound/NotFound";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
   const history = useHistory();
   const [currentUser, setCurrentUser] = React.useState({});
-  const [registrationError, setRegisteredError] = React.useState(false)
-  const [loginError, setLoginError] = React.useState(false)
-  const [isLogin, setIsLogin] = React.useState(false)
+  const [registrationError, setRegisteredError] = React.useState(false);
+  const [loginError, setLoginError] = React.useState(false);
+  const [isLogin, setIsLogin] = React.useState(false);
   const [isEditError, setIsEditError] = React.useState(false);
   const [isEditDone, setIsEditDone] = React.useState(false);
 
   function isLoggedInCheck() {
-    const jwt = localStorage.getItem('jwt');
+    const jwt = localStorage.getItem("jwt");
     if (jwt) {
       MainApi.getInfo()
-      .then(userInfo=>{
-        if(userInfo) {
-          setCurrentUser(userInfo.data);
-          setIsLogin(true);
-        }
-      })
-      .catch(err => {
-        console.log(err)
-      })
-      
+        .then((userInfo) => {
+          if (userInfo) {
+            setCurrentUser(userInfo.data);
+            setIsLogin(true);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
-  };
+  }
 
   React.useEffect(() => {
     isLoggedInCheck();
   }, []);
 
   React.useEffect(() => {
-    if(isLogin) {
+    if (isLogin) {
       MainApi.getInfo()
-        .then(userInfo=>{
-          if(userInfo) {
+        .then((userInfo) => {
+          if (userInfo) {
             setCurrentUser(userInfo.data);
           }
-        }).catch(err => {
-          console.log(err)
         })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }, []);
 
-  function handleLogin(email,password) {
+  function handleLogin(email, password) {
     MainApi.login(email, password)
       .then((data) => {
         if (data) {
@@ -64,47 +64,45 @@ function App() {
           history.push("/movies");
         }
       })
-      .catch(err=>{
+      .catch((err) => {
         setLoginError(true);
         console.log(err);
       });
-      
-  };
+  }
 
   function handleRegister(email, password, name) {
     MainApi.register(email, password, name)
-      .then(data => {
-        if(data) {
-          handleLogin(email,password);
+      .then((data) => {
+        if (data) {
+          handleLogin(email, password);
           history.push("/signin");
         }
       })
       .catch(() => {
         setRegisteredError(true);
       });
-  };
+  }
 
   function handleLogout() {
-      history.push('/');
-      setIsLogin(false);
-      localStorage.clear();
-  };
+    history.push("/");
+    setIsLogin(false);
+    localStorage.clear();
+  }
 
   function editProfile(name, email) {
-    
     MainApi.setInfo(name, email)
       .then((info) => {
-      setCurrentUser(info);
-      setIsEditDone(true);
-      setIsEditError(false);
-      setTimeout(()=>{
-        setIsEditDone(false);
-      }, 4000);
-    })
-    .catch(() => {
-      setIsEditError(true);
-    })
-  };
+        setCurrentUser(info);
+        setIsEditDone(true);
+        setIsEditError(false);
+        setTimeout(() => {
+          setIsEditDone(false);
+        }, 4000);
+      })
+      .catch(() => {
+        setIsEditError(true);
+      });
+  }
 
   return (
     <div className="page">
@@ -116,53 +114,54 @@ function App() {
             <Footer />
           </Route>
           {isLogin && (
-          <ProtectedRoute 
-            path="/movies"
-            exact
-            component={Movies}
-            isLogin={isLogin}
-            currentUser={currentUser}
-          />
-)}
+            <ProtectedRoute
+              path="/movies"
+              exact
+              component={Movies}
+              isLogin={isLogin}
+              currentUser={currentUser}
+            />
+          )}
           {isLogin && (
-          <ProtectedRoute 
-            path="/saved-movies"
-            exact
-            component={Movies}
-            isLogin={isLogin}
-            currentUser={currentUser}
-          />
-)}
+            <ProtectedRoute
+              path="/saved-movies"
+              exact
+              component={Movies}
+              isLogin={isLogin}
+              currentUser={currentUser}
+            />
+          )}
           {isLogin && (
-          <ProtectedRoute
-            path="/profile"
-            exact
-            component={Profile}
-            handleLogout={handleLogout} 
-            editProfile={editProfile} 
-            isLogin={isLogin}
-            currentUser={currentUser}
-            isEditError={isEditError}
-            isEditDone={isEditDone}
-          />
-)}
+            <ProtectedRoute
+              path="/profile"
+              exact
+              component={Profile}
+              handleLogout={handleLogout}
+              editProfile={editProfile}
+              isLogin={isLogin}
+              currentUser={currentUser}
+              isEditError={isEditError}
+              isEditDone={isEditDone}
+            />
+          )}
           <Route path="/signin" exact>
             <Login handleLogin={handleLogin} loginError={loginError} />
           </Route>
           <Route path="/signup" exact>
-            <Register handleRegister={handleRegister} registrationError={registrationError} />
+            <Register
+              handleRegister={handleRegister}
+              registrationError={registrationError}
+            />
           </Route>
           {isLogin && (
-          <Route path="*">
-            <NotFound />
-          </Route>
-)}
+            <Route path="*">
+              <NotFound />
+            </Route>
+          )}
         </Switch>
       </CurrentUserContext.Provider>
     </div>
   );
 }
-
-
 
 export default App;
