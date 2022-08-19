@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-nested-ternary */
 import React from "react";
 import "./MoviesCardList.css";
 import { useLocation } from "react-router-dom";
