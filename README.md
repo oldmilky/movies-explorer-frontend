@@ -5,3 +5,5 @@
 `npm i` — устанавливает необходимые пакеты
 
 `npm start` — запускает преокт
+
+# Pull Request: "https://github.com/oldmilky/movies-explorer-frontend/edit/level-3/"
