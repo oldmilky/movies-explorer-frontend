@@ -6,4 +6,4 @@
 
 `npm start` — запускает преокт
 
-# Pull Request: "https://github.com/oldmilky/movies-explorer-frontend/edit/level-3/"
+# Pull Request: https://github.com/oldmilky/movies-explorer-frontend/tree/level-3
