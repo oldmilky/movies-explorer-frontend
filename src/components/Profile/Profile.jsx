@@ -15,6 +15,7 @@ function Profile({
   const formWithValidation = CallbackValidation();
   const { email, name } = formWithValidation.values;
 
+  // Начальные значения формы
   React.useEffect(() => {
     formWithValidation.setValues({
       email: currentUser.email,

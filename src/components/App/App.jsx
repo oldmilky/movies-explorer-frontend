@@ -113,15 +113,15 @@ function App() {
             <Main />
             <Footer />
           </Route>
-          {isLogin && (
-            <ProtectedRoute
-              path="/movies"
-              exact
-              component={Movies}
-              isLogin={isLogin}
-              currentUser={currentUser}
-            />
-          )}
+          {/* {isLogin && ( */}
+          <Route
+            path="/movies"
+            exact
+            component={Movies}
+            isLogin={isLogin}
+            currentUser={currentUser}
+          />
+          {/* )} */}
           {isLogin && (
             <ProtectedRoute
               path="/saved-movies"
@@ -165,3 +165,4 @@ function App() {
 }
 
 export default App;
+
