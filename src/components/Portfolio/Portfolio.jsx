@@ -1,7 +1,7 @@
 import React from "react";
 import "./Portfolio.css";
 
-function Portfolio(props) {
+function Portfolio() {
   return (
     <div className="portfolio">
       <h4 className="portfolio__title">Портфолио</h4>
