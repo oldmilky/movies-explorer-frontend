@@ -115,8 +115,8 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  // baseUrl: 'https://api.movies',
-  baseUrl: 'http://localhost:3001',
+  baseUrl: 'http://api.oldmilky.nomoredomains.sbs/',
+  // baseUrl: 'http://localhost:3001',
   headers: {
     'Content-Type': 'application/json',
     'Authorization': `${localStorage.getItem('jwt')}`

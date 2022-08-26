@@ -113,7 +113,7 @@ function App() {
             <Main />
             <Footer />
           </Route>
-          {/* {isLogin && ( */}
+          {isLogin && (
           <Route
             path="/movies"
             exact
@@ -121,7 +121,7 @@ function App() {
             isLogin={isLogin}
             currentUser={currentUser}
           />
-          {/* )} */}
+          )}
           {isLogin && (
             <ProtectedRoute
               path="/saved-movies"
