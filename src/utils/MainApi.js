@@ -115,7 +115,7 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  baseUrl: 'http://api.oldmilky.nomoredomains.sbs/',
+  baseUrl: 'http://api.oldmilky.nomoredomains.sbs',
   // baseUrl: 'http://localhost:3001',
   headers: {
     'Content-Type': 'application/json',
