@@ -1,9 +1,5 @@
 # movies-explorer-frontend
 
-## Запуск проекта
+# Pull Request: "https://github.com/oldmilky/movies-explorer-frontend/pull/5"
 
-`npm i` — устанавливает необходимые пакеты
-
-`npm start` — запускает преокт
-
-# Pull Request: https://github.com/oldmilky/movies-explorer-frontend/pull/2
+# Frontend: "http://oldmilky.nomoredomains.sbs/"
